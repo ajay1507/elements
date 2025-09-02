@@ -1,0 +1,168 @@
+/* html, body {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+}
+.snap-container {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-container > section {
+  scroll-snap-align: start;
+  min-height: 100vh; 
+} */
+footer {
+  background-color: #333; /* Dark background */
+  color: white;
+  padding: 40px 0; /* Space top and bottom */
+  width: 100%; /* Full page width */
+}
+
+.footer-container {
+  margin: 0; /* Remove auto center constraint */
+  width: 100%; /* Full width */
+  display: flex;
+  justify-content: space-between; /* Space between columns */
+  align-items: flex-start; /* Align to top */
+  flex-wrap: wrap; /* For responsiveness */
+  padding: 0 40px; /* Add side padding */
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    padding: 0 20px;
+  }
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px; /* Prevent too narrow columns */
+  padding: 0 20px;
+}
+
+.footer-column h3 {
+  margin-bottom: 10px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column p {
+  font-size: 14px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background: white;
+    box-shadow: inset 0 3px 8px 0 rgba(0,0,0,0.14), 0 1.5px 0 0 #fff;
+  overflow: visible; /* so pseudo-elements can overflow */
+  transition: box-shadow 0.3s ease;
+}
+
+/* Add padding to body to offset fixed header height (adjust 60px as your header height) */
+body {
+  padding-top: 60px;
+}
+
+header::before,
+header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 130px; /* adjust width for curve size */
+  background: white;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  z-index: -1;
+}
+
+header::before {
+  left: 0;
+  border-bottom-right-radius: 3rem;
+  clip-path: ellipse(60% 100% at 0% 100%);
+}
+
+header::after {
+  right: 0;
+  border-bottom-left-radius: 3rem;
+  clip-path: ellipse(60% 100% at 100% 100%);
+}
+.tabs-container {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.services-list {
+  list-style: disc inside;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin: 20px 0;
+}
+
+.image-container img {
+  width: 400px; /* Adjust as needed */
+  height: auto;
+  clip-path: polygon(
+    25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%
+  ); /* Honeycomb hexagon shape */
+  display: block;
+  border-radius: 15px;
+}
+
+.honeycomb-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 100%;
+  pointer-events: none;
+  border: 2px solid #1e90ff; /* Blue border */
+  clip-path: polygon(
+    25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%
+  );
+  border-radius: 15px;
+}
+
+.description {
+  max-width: 600px;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 10px 25px;
+  border: 1.5px solid #666;
+  background: transparent;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #1e90ff;
+  color: #fff;
+  border-color: #1e90ff;
+}
