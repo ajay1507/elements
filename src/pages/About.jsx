@@ -82,7 +82,7 @@ function TeamCarousel() {
   useEffect(() => {
     if (isPaused) return;
 
-    const holdTimeout = setTimeout(() => setFade(true), 3500); // 3.5s fully visible
+    const holdTimeout = setTimeout(() => setFade(true), 4000); // 4s fully visible
     const fadeTimeout = setTimeout(() => {
       setSelectedIndex((prev) => (prev + 1) % teamMembers.length);
       setFade(false);
@@ -107,7 +107,7 @@ function TeamCarousel() {
   const member = teamMembers[selectedIndex];
 
   return (
-    <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px]">
+      <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px] relative" style={{ left: "-5%" }}>
       <div className="flex flex-col md:flex-row-reverse items-center gap-10">
         {/* Right side – details */}
         <div className="w-full md:w-3/5">
@@ -175,6 +175,8 @@ function TeamCarousel() {
           />
         </div>
       </div>
+
+      
 
       {/* Circle thumbnails navigation */}
       <div className="flex w-full justify-end pr-6 sm:pr-16 md:pr-32 xl:pr-48">

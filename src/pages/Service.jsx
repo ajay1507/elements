@@ -92,7 +92,7 @@ export default function Service() {
   </h1>
 
   <div
-   className="text-white border border-white/20 shadow-2xl backdrop-blur-lg bg-black/40 rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 w-full max-w-screen-lg sm:max-w-screen-xl md:max-w-screen-2xl flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-10"
+   className="text-white border border-white/20 shadow-2xl backdrop-blur-lg bg-black/40 rounded-3xl p-6 sm:p-6 md:p-8 lg:p-10 w-full max-w-screen-lg sm:max-w-screen-xl md:max-w-screen-2xl flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-10"
 style={{ boxSizing: "border-box" }}
 
   >
@@ -124,7 +124,8 @@ style={{ boxSizing: "border-box" }}
               Comprehensive Financial Solutions for Sustainable Growth
             </h1>
             <p className="text-gray-700 leading-relaxed text-base md:text-lg max-w-3xl">
-              At Elements Financial Solutions, we deliver a dynamic suite of advisory services tailored to empower clients across sectors including Energy, Materials, Industrials, Utilities, Health Care, Financials, Consumer Discretionary, Consumer Staples, Information Technology, Communication Services, and Real Estate. With commitment to innovation, collaboration, and sustainability, our solutions transform challenges into opportunities, driving resilience and long-term success.
+              At Elements Financial Solutions, we deliver a dynamic suite of advisory services tailored to empower clients across sectors including Energy, Materials, Industrials, Utilities, Health Care, Financials, Consumer Discretionary, Consumer Staples, Information Technology, 
+              Communication Services, and Real Estate. With commitment to innovation, collaboration, and sustainability, our solutions transform challenges into opportunities, driving resilience and long-term success.
             </p>
             <button className="mt-8 text-gray-600 hover:text-gray-900 text-lg font-light flex items-center gap-2">
               Explore Offering Details <span style={{ fontSize: 24 }}>↓</span>
@@ -139,7 +140,7 @@ style={{ boxSizing: "border-box" }}
       {/* Services Tabbed Section */}
       <section className="px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px] py-20 w-full">
         <div className="max-w-[1440px] mx-auto">
-          <h1 className="text-4xl font-extrabold text-black mb-6">Services We Offer</h1>
+          <h1 className="text-5xl font-extrabold text-black mb-6">Services We Offer</h1>
           <div className="flex flex-wrap sm:flex-nowrap border-b border-gray-300 mb-12 mx-auto w-full overflow-x-auto">
             {services.map((service, index) => (
               <button

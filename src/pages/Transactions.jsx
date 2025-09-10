@@ -107,7 +107,7 @@ export default function Transactions() {
             <p className="text-lg text-gray-200 mb-12">
               Reflected in recently closed transactions with energy, clean technologies, infrastructure, and healthcare clients, showcasing commitment across sectors.
             </p>
-            <button className="text-white border border-white rounded-full px-6 py-3 hover:bg-white hover:text-[#01487A] transition">
+            <button className="text-white border border-white rounded-full px-4 py-3 hover:bg-white hover:text-[#01487A] transition">
               Explore Transactions <span className="ml-2">↓</span>
             </button>
           </div>
