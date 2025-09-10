@@ -13,6 +13,10 @@
   scroll-snap-align: start;
   min-height: 100vh; 
 } */
+
+ body {
+  font-family: 'Albert Sans', sans-serif;
+}
 footer {
   background-color: #333; /* Dark background */
   color: white;
@@ -165,4 +169,17 @@ header::after {
   background-color: #1e90ff;
   color: #fff;
   border-color: #1e90ff;
+}
+.my-button {
+  background: linear-gradient(180deg, #fff 42.68%, rgba(29, 29, 29, 0.1666) 100%);
+  transition: all 0.3s ease;
+  border-radius: 9999px;
+  padding: 0.5em 1.2em;
+}
+
+.my-button:hover {
+  background: linear-gradient(180deg, #eee 30%, #bbb 100%);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  color: #000;
+  transform: scale(1.05);
 }

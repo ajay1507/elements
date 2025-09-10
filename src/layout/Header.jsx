@@ -5,6 +5,7 @@ import logo from "../assets/Header/Logo.svg";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuBtnActive, setMenuBtnActive] = useState(false);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -13,30 +14,20 @@ function Header() {
     { name: "Transactions", path: "/transactions" },
   ];
 
-  const baseLinkClass =
-    "px-6 py-1.5 text-lg rounded-full font-semibold transition duration-200";
-  const activeLinkClass = "active-gradient shadow-lg text-black";
+const baseLinkClass =
+  "px-6 py-1.5 text-lg rounded-full font-semibold transition duration-200 cursor-pointer " +
+  "text-black hover:bg-gray-100 hover:text-blue-600 " +  // keep text blue on hover
+  "active:bg-gray-100 active:text-black hover:shadow-lg";
+
+  const activeLinkClass = "bg-gradient-hover  shadow-lg";
+
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
-      <style>{`
-        .active-gradient {
-          background: linear-gradient(180deg, rgba(255, 255, 255, 0.34) 42.68%, rgba(29, 29, 29, 0.1666) 100%);
-          border: 1px solid #D4D4D4;
-        }
-        .blinking-dot {
-          background: lightgreen;
-          animation: blink 1.8s infinite ease-in-out;
-        }
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-      `}</style>
-      <div className="relative w-full bg-white shadow-xl h-20 flex items-center justify-center rounded-b-[3rem] overflow-hidden">
-        <div className="flex items-center justify-between w-11/12 max-w-6xl">
+      <div className="relative w-full bg-gray shadow-x2 h-20 flex items-center justify-center rounded-b-[3rem] overflow-hidden">
+        <div className="flex items-center justify-between w-full max-w-[1440px] mx-auto">
           <div className="flex items-center gap-2">
-            <img src={logo} alt="Logo" className="w-15 h-15" />
+            <img src={logo} alt="Logo" className="w-13 h-13" />
           </div>
           <nav className="hidden md:flex items-center gap-6 font-medium text-black">
             {navLinks.map(({ name, path }) => (
@@ -60,11 +51,19 @@ function Header() {
               }
             >
               Contact
-              <span className="inline-block w-3 h-3 rounded-full blinking-dot"></span>
+             
             </NavLink>
           </nav>
           <button
-            className="md:hidden text-gray-800 text-3xl p-1 rounded"
+            className={`
+              md:hidden text-gray-800 text-3xl p-1 rounded transition
+              ${menuBtnActive ? "bg-gray-200 shadow-lg" : ""}
+              hover:shadow-lg hover:bg-gray-100
+              active:bg-gray-300
+            `}
+            onMouseDown={() => setMenuBtnActive(true)}
+            onMouseUp={() => setMenuBtnActive(false)}
+            onMouseLeave={() => setMenuBtnActive(false)}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
@@ -89,9 +88,6 @@ function Header() {
                 }
               >
                 {name}
-                {name === "Contact" && (
-                  <span className="inline-block w-3 h-3 rounded-full blinking-dot ml-2"></span>
-                )}
               </NavLink>
             );
           })}

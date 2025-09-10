@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 import BGAbout from "../assets/About/BGAbout.jpg";
@@ -10,6 +10,7 @@ import SiddeshRai from "../assets/About/SiddeshRai.png";
 import NirmalBora from "../assets/About/NirmalBora.png";
 import ReshmaShetty from "../assets/About/ReshmaShetty.png";
 import KomalAgarwal from "../assets/About/KomalAgarwal.png";
+import AjinkyaShewale from "../assets/About/AjinkyaShewale.png"; 
 
 const additionalTeamMembers = [
   { name: "Reshma Shetty", role: "Sr. Manager, Business Development", img: ReshmaShetty },
@@ -17,7 +18,7 @@ const additionalTeamMembers = [
   { name: "Nirmal Bora", role: "Sr. Manager, Investment Banking", img: NirmalBora },
   { name: "Aditi Arya", role: "Management Trainee, Investment Banking", img: "https://example.com/images/aditi-arya.jpg" },
   { name: "Komal Agarwal", role: "Manager, Investment Banking", img: KomalAgarwal },
-  { name: "Ajinkya Shewale", role: "Analyst", img: "https://example.com/images/ajinkya-shewale.jpg" },
+  { name: "Ajinkya Shewale", role: "Analyst", img: AjinkyaShewale },
   { name: "Sudhanshu Gupta", role: "Management Trainee, Investment Banking", img: "https://example.com/images/sudhanshu-gupta.jpg" },
   { name: "Prashanth Chaitnya", role: "Management Trainee", img: "https://example.com/images/prashanth-chaitnya.jpg" },
 ];
@@ -76,6 +77,22 @@ His strong professional network includes active relationships with major Indian 
 function TeamCarousel() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [fade, setFade] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const holdTimeout = setTimeout(() => setFade(true), 3500); // 3.5s fully visible
+    const fadeTimeout = setTimeout(() => {
+      setSelectedIndex((prev) => (prev + 1) % teamMembers.length);
+      setFade(false);
+    }, 4000); // 0.5s fade, total 4s
+
+    return () => {
+      clearTimeout(holdTimeout);
+      clearTimeout(fadeTimeout);
+    };
+  }, [selectedIndex, isPaused]);
 
   const handleMemberChange = (index) => {
     if (index !== selectedIndex) {
@@ -90,14 +107,13 @@ function TeamCarousel() {
   const member = teamMembers[selectedIndex];
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20">
+    <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px]">
       <div className="flex flex-col md:flex-row-reverse items-center gap-10">
         {/* Right side – details */}
         <div className="w-full md:w-3/5">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-12 text-left">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold mb-12 text-left">
             Meet the <span className="font-bold text-black">Team</span>
           </h2>
-
           <h3 className="text-blue-600 text-2xl md:text-3xl font-extrabold mb-1">
             {member.name.toUpperCase()}
           </h3>
@@ -105,7 +121,12 @@ function TeamCarousel() {
           {member.credential && (
             <p className="text-gray-500 font-medium">{member.credential}</p>
           )}
-          <div className="mt-4 text-gray-700 whitespace-pre-line">
+          <div
+            className="mt-4 text-gray-700 whitespace-pre-line"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            tabIndex={0}
+          >
             {Array.isArray(member.bio)
               ? member.bio.map((para, idx) => (
                   <p key={idx} className="mb-3">
@@ -125,35 +146,61 @@ function TeamCarousel() {
             </a>
           )}
         </div>
-        {/* Left side – photo (capsule shape) */}
-        <div className="w-60 h-96 bg-blue-500 overflow-hidden shadow-lg flex-shrink-0 mt-2 md:mt-10 rounded-[9999px]">
+
+        {/* Left side – capsule image - add handlers here */}
+        <div
+          className="overflow-hidden shadow-lg flex-shrink-0 mt-2 md:mt-10 flex flex-col items-center justify-start
+          w-[180px] h-[290px] sm:w-[220px] sm:h-[350px] md:w-[299px] md:h-[488px]"
+          style={{
+            borderRadius: 300,
+            background: "#00B3FF",
+          }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          tabIndex={0}
+        >
           <img
             src={member.img}
             alt={member.name}
             className={`w-full h-full object-cover transition-opacity duration-500 ${
               fade ? "opacity-0" : "opacity-100"
             }`}
+            style={{
+              borderRadius: 300,
+              marginTop: "18px",
+              height: "calc(100% - 18px)",
+              width: "100%",
+              objectFit: "cover",
+            }}
           />
         </div>
       </div>
+
       {/* Circle thumbnails navigation */}
-      <div className="mt-12 flex justify-center gap-6 flex-wrap">
-        {teamMembers.map((m, idx) => (
-          <button
-            key={m.name}
-            onClick={() => handleMemberChange(idx)}
-            className={`flex flex-col items-center text-center transition ${
-              selectedIndex === idx
-                ? "opacity-100"
-                : "opacity-60 hover:opacity-100"
-            }`}
-          >
-            <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden shadow-md">
-              <img src={m.img} alt={m.name} className="w-full h-full object-cover" />
-            </div>
-            <p className="mt-2 text-xs font-medium">{m.name}</p>
-          </button>
-        ))}
+      <div className="flex w-full justify-end pr-6 sm:pr-16 md:pr-32 xl:pr-48">
+        <div className="flex gap-2 sm:gap-20 flex-wrap">
+          {teamMembers.map((m, idx) => (
+            <button
+              key={m.name}
+              onClick={() => handleMemberChange(idx)}
+              className={`flex flex-col items-center text-center transition ${
+                selectedIndex === idx
+                  ? "opacity-100"
+                  : "opacity-60 hover:opacity-100"
+              }`}
+            >
+              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-blue-400 overflow-hidden shadow-md">
+                
+                <img
+                  src={m.img}
+                  alt={m.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="mt-2 text-xs font-medium">{m.name}</p>
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -164,45 +211,47 @@ export default function About() {
     <main className="space-y-24">
       {/* Hero Section */}
       <section
-        className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-white px-6"
-        style={{ backgroundImage: `url(${BGAbout})` }}
+        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black px-4 py-9 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px]"
+        style={{ backgroundImage: `url(${BGAbout})`, marginBottom: 0, paddingBottom: 0 }}
       >
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-        <div className="relative z-10 flex flex-col items-center space-y-10 max-w-5xl w-full text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight max-w-3xl mx-auto">
+        <div className="absolute inset-0 bg-black/60 " />
+        <div className="relative z-10 flex flex-col items-center space-y-10 w-full text-center">
+          <h1 className="text-white text-5xl md:text-7xl font-extrabold leading-tight max-w-5xl mx-auto mb-8">
             Empowering <br /> Growth with Purpose
           </h1>
-          <div className="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg p-8 text-left text-sm md:text-base max-w-4xl mx-auto">
-            <h2 className="text-xl font-semibold mb-4 text-white">
+
+          <div
+   className="text-white border border-white/10 shadow-2xl backdrop-blur-lg bg-black/30 w-full max-w-[1200px] sm:max-w-[1200px] md:max-w-[1400px] lg:max-w-[1600px] rounded-[30px] p-4 sm:p-8 md:p-10 flex flex-col gap-6 md:gap-8 justify-center items-start"
+style={{
+  opacity: 1,
+  boxSizing: "border-box",
+}}
+
+          >
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-2 text-white">
               Elements Financial Solutions
             </h2>
-            <p className="mb-4 text-gray-200 leading-relaxed">
-              Since its inception in 2013, Elements Financial Solutions Private Limited (EFS) has
-              established itself as a global financial and business advisory firm dedicated to
-              delivering more than just financial analysis. EFS crafts value-driven strategies that
-              fuel business growth while prioritizing positive societal impact. Our mission is to
-              guide companies on their growth journey through customized financial advisory services
-              that seamlessly integrate economic and social considerations.
+            <p className="mb-4 text-lg leading-relaxed text-white/90" style={{ marginTop: 0 }}>
+              Since its inception in 2013, Elements Financial Solutions Private Limited (EFS) has established itself as a global financial and business advisory firm dedicated to delivering more than just financial analysis. EFS crafts value-driven strategies that fuel business growth while prioritizing positive societal impact. Our mission is to guide companies on their growth journey through customized financial advisory services that seamlessly integrate economic and social considerations.
             </p>
-            <p className="text-gray-200 leading-relaxed">
-              With a focus on collaboration and innovation, EFS transforms challenges into
-              opportunities, offering tailored solutions such as strategic planning, financial
-              restructuring, and economic analysis. Backed by a team of seasoned professionals, we
-              are committed to fostering sustainable business practices and delivering impactful
-              results for clients in both local and international markets.
+            <p className="text-lg leading-relaxed text-white/90">
+              With a focus on collaboration and innovation, EFS transforms challenges into opportunities, offering tailored solutions such as strategic planning, financial restructuring, and economic analysis. Backed by a team of seasoned professionals, we are committed to fostering sustainable business practices and delivering impactful results for clients in both local and international markets.
             </p>
           </div>
-          <button className="mt-4 px-8 py-3 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 border border-white/30 transition flex items-center gap-2 shadow-md max-w-max mx-auto">
-            Explore More About Us <ChevronDown size={18} />
+          <button className="mt-8 px-8 sm:px-10 py-3 rounded-full bg-black/1 backdrop-blur-lg text-white hover:bg-black/10 border border-white/10 transition flex items-center gap-2 shadow-lg text-lg font-medium max-w-max mx-auto">
+            Explore More About Us <ChevronDown size={22} />
           </button>
         </div>
       </section>
+
       {/* Expertise Section */}
-      <section className="bg-[#00467B] text-white py-20 px-6 md:px-12 lg:px-24 min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 w-full">
+      <section className="bg-[#00467B] py-20 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px]" style={{ marginTop: 0, paddingTop: 150 }}>
+        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center text-white gap-10">
           <div className="md:w-1/2">
-            <h2 className="text-4xl font-extrabold mb-6">Our Expertise</h2>
-            <p className="text-base leading-relaxed">
+            <h2 className="text-4xl font-extrabold mb-6 text-center md:text-left">
+              Our Expertise
+            </h2>
+            <p className="text-base leading-relaxed max-w-xl mx-auto md:mx-0 text-center md:text-left">
               With a proven track record of success, Elements Financial Solutions delivers exceptional
               financial solutions across diverse sectors, including Energy, Materials, Industrials,
               Utilities, Health Care, Financials, Consumer Discretionary, Consumer Staples,
@@ -211,32 +260,63 @@ export default function About() {
               resilience in dynamic markets.
             </p>
           </div>
-          <div className="md:w-1/2 flex justify-center">
-            <div className="relative w-[590px] h-[590px]">
-              <img src={secimg} alt="Our Expertise" className="w-full h-full object-cover" />
+          <div className="md:w-1/2 flex justify-center mt-10 md:mt-0">
+            <div className="relative w-full max-w-[250px] sm:max-w-[350px] md:max-w-[590px] h-auto aspect-square">
+              <img src={secimg} alt="Our Expertise" className="w-full h-full object-cover rounded-md" />
             </div>
           </div>
         </div>
       </section>
+
       {/* Meet the Team */}
       <TeamCarousel />
+
       {/* Additional Team Members */}
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-          {additionalTeamMembers.map(({ name, role, img }) => (
-            <div key={name} className="flex flex-col items-center text-center space-y-4">
-              <div className="w-24 h-24 rounded-full shadow-md overflow-hidden">
-                <img src={img} alt={name} className="w-full h-full object-cover" />
+      <section
+        className="flex flex-col items-center w-full px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px] py-16"
+        style={{
+          opacity: 1,
+          position: "relative"
+        }}
+      >
+        <div className="w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-6 sm:gap-x-10 md:gap-x-16 w-full">
+            {additionalTeamMembers.map(({ name, role, img }) => (
+              <div
+                key={name}
+                className="flex flex-row items-center"
+                style={{ minHeight: 150 }}
+              >
+                <div
+                  className="rounded-full shadow-md overflow-hidden flex-shrink-0"
+                  style={{
+                    width: 90,
+                    height: 90,
+                    background: "#eee",
+                  }}
+                >
+                  <img
+                    src={img}
+                    alt={name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col items-start pl-4 sm:pl-8">
+                  <h3 className="font-extrabold text-lg md:text-xl text-black text-left mb-1">
+                    {name}
+                  </h3>
+                  <div className="text-sm md:text-md text-gray-500 text-left leading-tight mb-1" style={{ whiteSpace: "pre-line" }}>
+                    {role}
+                  </div>
+                  <a href="#" className="mt-1 text-blue-600 hover:text-blue-800">
+                    <FaLinkedin size={20} />
+                  </a>
+                </div>
               </div>
-              <h3 className="font-bold text-lg text-gray-900">{name}</h3>
-              <p className="text-sm text-gray-600">{role}</p>
-              <a href="#" className="text-blue-600 hover:text-blue-800">
-                <FaLinkedin size={18} />
-              </a>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
     </main>
-  );
+  );
 }

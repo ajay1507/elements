@@ -5,64 +5,56 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero/Intro Section with background image */}
-      <section
-        className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-white"
-        style={{ backgroundImage: `url(${Contact})` }}
-        aria-label="Contact Page Hero Section"
-      >
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/60 z-0"></div>
+   <section
+  className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center text-white"
+  style={{ backgroundImage: `url(${Contact})` }}
+  aria-label="Contact Page Hero Section"
+>
+  {/* Dark overlay for readability */}
+  <div className="absolute inset-0 bg-black/60 z-0"></div>
 
-        {/* Content wrapper */}
-        <div className="relative z-10 flex flex-col items-center w-full px-4 py-20 min-h-[400px]">
-          {/* Big Centered Heading */}
-          <h1
-            className="text-5xl md:text-7xl font-extrabold text-white text-center drop-shadow-lg mb-16"
-            style={{ lineHeight: 1.05, letterSpacing: "-2px" }}
-          >
-            Get in Touch with<br />
-            Elements Financial Solutions
-          </h1>
+  {/* Content wrapper */}
+  <div className="relative z-10 flex flex-col items-center w-full px-4 sm:px-8 md:px-16 py-16 sm:py-20 min-h-[400px]">
+    {/* Big Centered Heading */}
+    <h1
+      className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white text-center drop-shadow-lg mb-8 sm:mb-12 lg:mb-16"
+      style={{ lineHeight: 1.05, letterSpacing: "-2px" }}
+    >
+      Get in Touch with<br />
+      Elements Financial Solutions
+    </h1>
 
-          {/* Frosted glass info card */}
-          <div
-            style={{
-              width: 1400,
-              maxWidth: "90vw",
-              height: 236,
-              borderRadius: 30,
-              border: "1px solid rgba(255,255,255,0.18)",
-              padding: 40,
-              background: "rgba(255, 255, 255, 0.07)",
-              backdropFilter: "blur(60px)",
-              boxSizing: "border-box",
-              marginBottom: 32,
-            }}
-            className="flex flex-col items-start mx-auto"
-          >
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">At Elements Financial Solutions</h2>
-            <p className="text-gray-100 text-lg md:text-xl font-normal leading-relaxed">
-              We’re passionate about innovation, collaboration, and creating lasting value. Join our dynamic team to work on transformative financial solutions for leading corporations across diverse industries.<br />
-              We seek talented individuals with expertise in finance, strategy, and advisory services who share our commitment to excellence and sustainability. Explore career opportunities
-              and become part of our mission to empower businesses globally.
-            </p>
-          </div>
+      {/* Responsive info card (pasted here) */}
+    <div
+      className="text-white border border-white/10 shadow-2xl backdrop-blur-lg bg-black/30 w-full max-w-[95vw] sm:max-w-3xl md:max-w-4xl lg:max-w-[1342px] rounded-[30px] p-4 sm:p-8 md:p-10 flex flex-col gap-6 md:gap-8 justify-center items-start mb-8 sm:mb-10 lg:mb-12"
+      style={{
+        opacity: 1,
+        boxSizing: "border-box",
+      }}
+    >
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-4">
+        At Elements Financial Solutions
+      </h2>
+      <p className="text-gray-100 text-base sm:text-lg md:text-xl font-normal leading-relaxed">
+        We’re passionate about innovation, collaboration, and creating lasting value. Join our dynamic team to work on transformative financial solutions for leading corporations across diverse industries.<br/>
+        We seek talented individuals with expertise in finance, strategy, and advisory services who share our commitment to excellence and sustainability. Explore career opportunities
+        and become part of our mission to empower businesses globally.
+      </p>
+    </div>
 
-          {/* Contact Us Button */}
-          <button
-            className="mt-1 px-10 py-3 rounded-full border border-white/30 bg-white/10 text-white text-lg font-medium backdrop-blur transition hover:bg-white/20 shadow"
-            style={{ borderRadius: 20 }}
-            onClick={() => {
-              document.getElementById("contact-info")?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Contact Us <span className="text-xl leading-none align-middle ml-1">&#8595;</span>
-          </button>
+    {/* Contact Us Button */}
+    <button
+      className="mt-2 px-6 sm:px-10 py-2.5 sm:py-3 rounded-full border border-white/30 bg-black/20 text-white text-base sm:text-lg font-medium backdrop-blur transition hover:bg-white/20 shadow"
+      style={{ borderRadius: 20 }}
+      onClick={() => {
+        document.getElementById("contact-info")?.scrollIntoView({ behavior: "smooth" });
+      }}
+    >
+      Contact Us <span className="text-xl leading-none align-middle ml-1">&#8595;</span>
+    </button>
+  </div>
+</section>
 
-          {/* Contact info below */}
-         
-        </div>
-      </section>
 
       {/* Ask Query Section */}
       <section className="w-full bg-white px-8 py-20">
@@ -73,8 +65,10 @@ export default function ContactPage() {
             <div>
               <p className="font-bold mb-2">Elements Financial Solution</p>
               <p className="text-gray-700 mb-6">
-                5th Floor, A – Wing, Trade Link, Kamala Mills Compound, Lower Parel, Mumbai – 400013,<br />
-                Maharashtra, INDIA.
+                5th Floor, A – Wing, Trade Link, Kamala Mills Compound,
+                <p> Lower Parel, Mumbai – 400013,</p>Maharashtra, INDIA.
+                  <br />
+               
               </p>
               <div className="mb-4">
                 <p className="font-semibold mb-1">Email</p>
