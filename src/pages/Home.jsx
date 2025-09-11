@@ -20,12 +20,43 @@ import secondicon from "../assets/Home/secondicon.svg" ;
 import thirdicon from "../assets/Home/thirdicon.svg" ;
 import fourthicon from "../assets/Home/fourthicon.svg" ;
 import fifthicon from "../assets/Home/fifthicon.svg" ;
-
-
+import { motion } from "framer-motion";
+const stats = [
+  { label: "Transactions", value: 70, suffix: "+" },
+  { label: "Transactions Value", value: 183, suffix: "₹Bn+" },
+  { label: "Year’s Track Record", value:13, suffix: "+" },
+  { label: "Institutional Relationships", value: 90, suffix: "+" }
+];
 export default function Home() {
   const images = [BGimage1, BGimage2];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
+const [counts, setCounts] = useState(stats.map(() => 0));
+  useEffect(() => {
+    const animationFrames = stats.map((stat, index) => {
+      const duration = 2000; // 2 seconds
+      const increment = stat.value / (duration / 16); // approx 60fps
+      let current = 0;
+
+      const step = () => {
+        current += increment;
+        if (current >= stat.value) {
+          current = stat.value;
+        }
+        setCounts(prev => {
+          const updated = [...prev];
+          updated[index] = Math.floor(current);
+          return updated;
+        });
+        if (current < stat.value) {
+          requestAnimationFrame(step);
+        }
+      };
+
+      requestAnimationFrame(step);
+      return step;
+    });
+  }, []);
 
   useEffect(() => {
     const holdTimeout = setTimeout(() => {
@@ -74,7 +105,7 @@ export default function Home() {
       <div className="flex flex-col space-y-40">
         {/* Investment Bank Section */}
         <section
-          className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black px-4 sm:px-8 md:px-16 lg:px-32"
+          className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black py-5 px-4 sm:px-8 md:px-16 lg:px-32"
           Chivo="Investment Bank Hero Section"
         >
           <div className="absolute inset-0 w-full h-full">
@@ -106,64 +137,65 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/40" />
           </div>
           <div className="relative z-10 w-full text-white text-center px-4 sm:px-8 md:px-16">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-chivo">
-              India’s Execution – Focused
-            </h3>
-            <h1 className="text-white text-5xl md:text-7xl font-extrabold leading-tight max-w-5xl mx-auto mb-8">
-              Investment Bank
-            </h1>
-            <p className="mt-4 text-base sm:text-lg md:text-xl max-w-xl mx-auto text-middle font-chivo">
-              From deal structuring to closure, we bring precision and speed to your
-              capital and strategic initiatives.
-            </p>
+         <motion.div
+  initial={{ y: -100, opacity: 0 }}   // Start above & hidden
+  animate={{ y: 0, opacity: 1 }}     // Animate to normal position
+  transition={{ duration: 1, ease: "easeOut" }}  // Smooth effect
+  className="relative z-10 w-full text-white text-center px-4 sm:px-8 md:px-16"
+>
+  <h3 className="text-lg sm:text-xl md:text-2xl font-chivo">
+    India’s Execution – Focused
+  </h3>
+  <h1 className="text-white text-5xl md:text-7xl font-Chivo leading-tight max-w-7xl mx-auto mb-8">
+    Investment Bank
+  </h1>
+  <p className="mt-4 text-base sm:text-lg md:text-xl max-w-xl mx-auto text-middle font-chivo">
+    From deal structuring to closure, we bring precision and speed to your
+    capital and strategic initiatives.
+  </p>
+</motion.div>
             {/* Stats Cards */}
-<div className="w-full flex flex-wrap lg:flex-nowrap justify-center gap-[10px] py-6">  {[
-    { label: "Transactions", value: "70+",},
-    { label: "Transactions Value", value: "₹183Bn+", },
-    { label: "Year’s Track Record", value: "13+",  },
-    { label: "Institutional Relationships", value: "90+", }
-  ].map(({ label, value, icon }) => (
-    <div
-      key={label}
-      className="flex flex-col  opacity-100"
-    >
-      {/* Top Part */}
-      <div
-        className="flex flex-row items-center justify-center"
-        style={{
-          width: 335,
-          height: 91,
-          borderRadius: 5,
-          border: "1px solid rgba(255,255,255,0.30)",
-          borderBottom: 0,
-          padding: 10,
-          background:
-            "linear-gradient(90deg,rgba(255,255,255,0.15) 0%,rgba(255,255,255,0.05) 100%)"
-        }}
-      >
-        {icon}
-        <span className="font-bold text-white text-4xl">{value}</span>
-      </div>
-      {/* Bottom Part */}
-      <div
-        className="flex items-center justify-center"
-        style={{
-          width: 335,
-          height: 60,
-          borderLeft: "1px solid rgba(255,255,255,0.30)",
-          borderRight: "1px solid rgba(255,255,255,0.30)",
-          borderBottom: "1px solid rgba(255,255,255,0.30)",
-          borderBottomRightRadius: 15,
-          borderBottomLeftRadius: 15,
-          background:
-            "linear-gradient(90deg,rgba(255,255,255,0.32) 0%,rgba(255,255,255,0.14) 100%)"
-        }}
-      >
-        <span className="text-lg text-white w-full text-center">{label}</span>
-      </div>
+    <div className="w-full flex flex-wrap lg:flex-nowrap justify-center gap-[10px] py-6">
+      {stats.map(({ label, suffix }, index) => (
+        <div key={label} className="flex flex-col opacity-100">
+          {/* Top Part */}
+          <div
+            className="flex flex-row items-center justify-center"
+            style={{
+              width: 335,
+              height: 91,
+              borderRadius: 5,
+              border: "1px solid rgba(255,255,255,0.30)",
+              borderBottom: 0,
+              padding: 10,
+              background:
+                "linear-gradient(90deg,rgba(255,255,255,0.15) 0%,rgba(255,255,255,0.05) 100%)"
+            }}
+          >
+            <span className="font-bold text-white text-4xl">
+              {counts[index].toLocaleString()} {suffix}
+            </span>
+          </div>
+          {/* Bottom Part */}
+          <div
+            className="flex items-center justify-center"
+            style={{
+              width: 335,
+              height: 60,
+              borderLeft: "1px solid rgba(255,255,255,0.30)",
+              borderRight: "1px solid rgba(255,255,255,0.30)",
+              borderBottom: "1px solid rgba(255,255,255,0.30)",
+              borderBottomRightRadius: 15,
+              borderBottomLeftRadius: 15,
+              background:
+                "linear-gradient(90deg,rgba(255,255,255,0.32) 0%,rgba(255,255,255,0.14) 100%)"
+            }}
+          >
+            <span className="text-lg text-white w-full text-center">{label}</span>
+          </div>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
             {/* Icons */}
             {/* <div className="mt-16 flex justify-center overflow-x-automax-w-[1440px]"> */}
              <div className="w-full flex flex-wrap lg:flex-nowrap  justify-center gap-[10px] py-6">

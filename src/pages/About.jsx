@@ -78,20 +78,27 @@ function TeamCarousel() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [fade, setFade] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (isPaused) return;
 
-    const holdTimeout = setTimeout(() => setFade(true), 4000); // 4s fully visible
-    const fadeTimeout = setTimeout(() => {
-      setSelectedIndex((prev) => (prev + 1) % teamMembers.length);
-      setFade(false);
-    }, 4000); // 0.5s fade, total 4s
+    // Reset progress when new member shows
+    setProgress(0);
 
-    return () => {
-      clearTimeout(holdTimeout);
-      clearTimeout(fadeTimeout);
-    };
+    // Animate progress bar every 40ms (100 steps = 4s)
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          setSelectedIndex((prevIndex) => (prevIndex + 1) % teamMembers.length);
+          return 0;
+        }
+        return prev + 1;
+      });
+    }, 40);
+
+    return () => clearInterval(interval);
   }, [selectedIndex, isPaused]);
 
   const handleMemberChange = (index) => {
@@ -107,106 +114,126 @@ function TeamCarousel() {
   const member = teamMembers[selectedIndex];
 
   return (
-      <section className="py-20 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px] relative" style={{ left: "-5%" }}>
-      <div className="flex flex-col md:flex-row-reverse items-center gap-10">
-        {/* Right side – details */}
-        <div className="w-full md:w-3/5">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold mb-12 text-left">
-            Meet the <span className="font-bold text-black">Team</span>
-          </h2>
-          <h3 className="text-blue-600 text-2xl md:text-3xl font-extrabold mb-1">
-            {member.name.toUpperCase()}
-          </h3>
-          <p className="text-lg font-semibold text-black">{member.role}</p>
-          {member.credential && (
-            <p className="text-gray-500 font-medium">{member.credential}</p>
-          )}
-          <div
-            className="mt-4 text-gray-700 whitespace-pre-line"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            tabIndex={0}
-          >
-            {Array.isArray(member.bio)
-              ? member.bio.map((para, idx) => (
-                  <p key={idx} className="mb-3">
-                    {para}
-                  </p>
-                ))
-              : member.bio}
-          </div>
-          {member.linkedin && (
-            <a
-              href={member.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block mt-4 text-blue-600 hover:text-blue-800"
-            >
-              <FaLinkedin size={22} />
-            </a>
-          )}
-        </div>
+ <section className="py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-48 relative -ml-[5%]">
+  <div className="flex flex-col md:flex-row-reverse items-center md:items-start gap-10 lg:gap-16">
+    {/* Right side – details */}
+    <div className="w-full md:w-3/5">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-Chivo mb-8 md:mb-12 text-left">
+        Meet the <span className="font-bold text-black">Team</span>
+      </h2>
 
-        {/* Left side – capsule image - add handlers here */}
-        <div
-          className="overflow-hidden shadow-lg flex-shrink-0 mt-2 md:mt-10 flex flex-col items-center justify-start
-          w-[180px] h-[290px] sm:w-[220px] sm:h-[350px] md:w-[299px] md:h-[488px]"
-          style={{
-            borderRadius: 300,
-            background: "#00B3FF",
-          }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          tabIndex={0}
+      {/* Member name + role */}
+  <div className="flex flex-col">
+    <h3 className="text-blue-600 text-xl sm:text-2xl md:text-3xl font-Chivo mb-1 truncate">
+      {member.name.toUpperCase()}
+    </h3>
+
+    <p className="text-base sm:text-lg font-Chivo text-black">{member.role}</p>
+
+    {/* Credential (optional, reserve space even if missing) */}
+    <p className={`text-gray-500 font-medium text-sm sm:text-base ${member.credential ? "" : "invisible"}`}>
+      {member.credential || "Placeholder"} 
+    </p>
+  </div>
+
+      {/* Bio */}
+      <div
+        className="mt-4 text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        tabIndex={0}
+      >
+        {Array.isArray(member.bio)
+          ? member.bio.map((para, idx) => (
+              <p key={idx} className="mb-3">
+                {para}
+              </p>
+            ))
+          : member.bio}
+      </div>
+
+      {/* LinkedIn */}
+      {member.linkedin && (
+        <a
+          href={member.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-block mt-4 text-blue-600 hover:text-blue-800"
         >
+          <FaLinkedin size={22} />
+        </a>
+      )}
+
+      {/* Progress Bar */}
+    <div className="w-full mt-6 h-[2px] bg-gray-200 relative overflow-hidden rounded">
+  <div
+    className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-100 ease-linear"
+    style={{ width: `${progress}%` }}
+  />
+</div>
+
+     
+  {/* Thumbnails */}
+<div className="flex w-full mt-8 md:mt-10">
+  <div className="flex gap-4 sm:gap-8 lg:gap-12 xl:gap-16 flex-wrap justify-start">
+    {teamMembers.map((m, idx) => (
+      <button
+        key={m.name}
+        onClick={() => handleMemberChange(idx)}
+        className={`flex flex-col items-center text-center transition ${
+          selectedIndex === idx ? "opacity-100" : "opacity-60 hover:opacity-100"
+        }`}
+        style={{ minWidth: "5rem" }} // fix button width
+      >
+        <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-blue-400 overflow-hidden shadow-md flex-shrink-0">
           <img
-            src={member.img}
-            alt={member.name}
-            className={`w-full h-full object-cover transition-opacity duration-500 ${
-              fade ? "opacity-0" : "opacity-100"
-            }`}
-            style={{
-              borderRadius: 300,
-              marginTop: "18px",
-              height: "calc(100% - 18px)",
-              width: "100%",
-              objectFit: "cover",
-            }}
+            src={m.img}
+            alt={m.name}
+            className="w-full h-full object-cover"
           />
         </div>
-      </div>
+        <p className="mt-2 text-xs sm:text-sm font-medium truncate w-full text-center">
+          {m.name}
+        </p>
+      </button>
+    ))}
+  </div>
+</div>
+    </div>
 
-      
+    {/* Left side – capsule image */}
+    <div
+      className="overflow-hidden shadow-lg flex-shrink-0 mt-6 md:mt-12 flex flex-col items-center justify-start
+      w-[160px] h-[260px] sm:w-[200px] sm:h-[320px] md:w-[260px] md:h-[400px] lg:w-[300px] lg:h-[480px]"
+      style={{
+        borderRadius: "300px",
+        background: "#00B3FF",
+      }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      tabIndex={0}
+    >
+      <img
+        src={member.img}
+        alt={member.name}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${
+          fade ? "opacity-0" : "opacity-100"
+        }`}
+        style={{
+          borderRadius: "300px",
+          marginTop: "18px",
+          height: "calc(100% - 18px)",
+          width: "100%",
+          objectFit: "cover",
+        }}
+      />
+    </div>
+  </div>
+</section>
 
-      {/* Circle thumbnails navigation */}
-      <div className="flex w-full justify-end pr-6 sm:pr-16 md:pr-32 xl:pr-48">
-        <div className="flex gap-2 sm:gap-20 flex-wrap">
-          {teamMembers.map((m, idx) => (
-            <button
-              key={m.name}
-              onClick={() => handleMemberChange(idx)}
-              className={`flex flex-col items-center text-center transition ${
-                selectedIndex === idx
-                  ? "opacity-100"
-                  : "opacity-60 hover:opacity-100"
-              }`}
-            >
-              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-blue-400 overflow-hidden shadow-md">
-                
-                <img
-                  src={m.img}
-                  alt={m.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="mt-2 text-xs font-medium">{m.name}</p>
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
+
 
 export default function About() {
   return (

@@ -76,14 +76,15 @@ const Footer = () => {
             </a>
           </div>
         </div>
-      <div className="mt-10 border-t border-gray-600 pt-4 flex flex-col md:flex-row items-center justify-between text-base text-gray-400">
+    <div className="mt-5 border-t border-gray-600 pt-10 flex flex-col md:flex-row items-center justify-between text-base text-gray-400">
   <div>© 2025 Elements Financial Solutions. All rights reserved.</div>
-         <div className="flex gap-5 mt-3 md:mt-0 text-base">
-  <a href="#" className="hover:text-white">Privacy Policy</a>
-  <span>|</span>
-  <a href="#" className="hover:text-white">Terms &amp; Conditions</a>
+  <div className="flex gap-5 mt-3 md:mt-0 text-base">
+    <a href="#" className="hover:text-white">Privacy Policy</a>
+    <span>|</span>
+    <a href="#" className="hover:text-white">Terms &amp; Conditions</a>
+  </div>
 </div>
-        </div>
+
       </div>
     </footer>
   );
