@@ -70,9 +70,9 @@ export default function Transactions() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 flex flex-col items-center space-y-10 w-full text-center">
-          <h1 className="text-white text-5xl md:text-7xl font-Chivo leading-tight max-w-5xl mx-auto mb-8">
+        <div className="relative z-10 flex flex-col items-center w-full px-4 sm:px-8 md:px-16 py-16 sm:py-5 min-h-[50px]"></div>
+        <div className="absolute inset-0 bg-black/60 z-0"></div>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-Chivo text-white text-center drop-shadow-lg mb-8 sm:mb-12 lg:mb-16">
             Delivering Transformative <br /> Financial Success
           </h1>
 
@@ -83,7 +83,9 @@ export default function Transactions() {
               boxSizing: "border-box",
             }}
           >
-            <h2 className="text-3xl md:text-4xl font-Chivo mb-2 text-white">
+            <h2 
+            className="text-3xl md:text-4xl font-Chivo mb-2 text-white
+            ">
               Elements Financial Solutions
             </h2>
             <p className="mb-4 text-lg leading-relaxed font-Albert Sans text-white/90" style={{ marginTop: 0 }}>
@@ -94,7 +96,7 @@ export default function Transactions() {
           <button className="mt-8 px-10 py-3 rounded-full bg-black/10 backdrop-blur-md text-white hover:bg-black/20 border border-white/10 transition flex items-center gap-2 shadow-lg text-lg font-medium max-w-max mx-auto">
             Explore More About Us
           </button>
-        </div>
+        
       </section>
 
       {/* Second Section */}
