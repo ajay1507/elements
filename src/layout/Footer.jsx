@@ -4,14 +4,14 @@ import LinkedIn from "../assets/footer/LinkedIn.svg";
 
 const Footer = () => {
   return (
-    <footer className="w-full text-white bg-[#373737] py-10">
+    <footer className="w-full text-white bg-[#373737] py-10 snap-start">
       <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-[120px] 2xl:px-[240px]">
         <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row md:items-start gap-12">
           {/* Company Info */}
           <div className="md:w-[29%]">
             <img src={footerlogo} alt="EFS Logo" className="h-[38px] mb-3" />
             <div className="text-sm text-gray-300 leading-relaxed">
-              <span className="font-semibold text-white">
+              <span className="font-Albert Sans text-white">
                 Elements Finance Solution Private Limited
               </span>
               <br />
@@ -20,7 +20,7 @@ const Footer = () => {
           </div>
           {/* Direct Links */}
           <div className="md:w-[18%] mt-10 md:mt-0">
-            <h3 className="text-lg font-semibold mb-6 text-white">Direct Links</h3>
+            <h3 className="text-lg font-Albert Sans mb-6 text-white">Direct Links</h3>
             <ul className="space-y-3 text-gray-300 text-base">
               <li><a href="/" className="hover:text-white duration-150">Home</a></li>
               <li><a href="/about" className="hover:text-white duration-150">About</a></li>
@@ -50,7 +50,7 @@ const Footer = () => {
               Contact No.: <span className="text-white">+91 9920 820 795</span>
             </div>
             {/* <div className="mt-3 mb-4 text-base text-right w-full md:w-auto"> */}
-              <span className="font-semibold text-white block">Elements Financial Solution</span>
+              <span className="font-Albert Sans text-white block">Elements Financial Solution</span>
               <span className="block text-gray-300">
                 5th Floor, A – Wing, Trade Link,<br />
                 Kamala Mills Compound,<br />

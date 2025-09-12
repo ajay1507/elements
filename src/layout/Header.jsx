@@ -20,7 +20,7 @@ function Header() {
     "px-6 py-1.5 text-lg rounded-full font-Roboto transition duration-200 cursor-pointer " +
     "border  text-black hover:text-blue-600 active:text-black";
 
-  const activeLinkClass = "bg-gradient-hover border-blackrgba(0, 0, 0, 5)";
+const activeLinkClass = "bg-gradient-hover border-[rgba(0,0,0,0.5)]";
 
   const isRouteActive = (path) => {
     if (path === "/") return location.pathname === "/";

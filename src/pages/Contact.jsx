@@ -17,7 +17,7 @@ export default function ContactPage() {
   <div className="relative z-10 flex flex-col items-center w-full px-4 sm:px-8 md:px-16 py-16 sm:py-20 min-h-[400px]">
     {/* Big Centered Heading */}
     <h1
-      className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white text-center drop-shadow-lg mb-8 sm:mb-12 lg:mb-16"
+      className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-Chivo text-white text-center drop-shadow-lg mb-8 sm:mb-12 lg:mb-16"
       style={{ lineHeight: 1.05, letterSpacing: "-2px" }}
     >
       Get in Touch with<br />
@@ -32,10 +32,10 @@ export default function ContactPage() {
         boxSizing: "border-box",
       }}
     >
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-4">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-Chivo text-white mb-2 sm:mb-4">
         At Elements Financial Solutions
       </h2>
-      <p className="text-gray-100 text-base sm:text-lg md:text-xl font-normal leading-relaxed">
+      <p className="text-gray-100 text-base sm:text-lg md:text-xl font-Albert Sans leading-relaxed">
         We’re passionate about innovation, collaboration, and creating lasting value. Join our dynamic team to work on transformative financial solutions for leading corporations across diverse industries.<br/>
         We seek talented individuals with expertise in finance, strategy, and advisory services who share our commitment to excellence and sustainability. Explore career opportunities
         and become part of our mission to empower businesses globally.
@@ -44,7 +44,7 @@ export default function ContactPage() {
 
     {/* Contact Us Button */}
     <button
-      className="mt-2 px-6 sm:px-10 py-2.5 sm:py-3 rounded-full border border-white/30 bg-black/20 text-white text-base sm:text-lg font-medium backdrop-blur transition hover:bg-white/20 shadow"
+      className="mt-2 px-6 sm:px-10 py-2.5 sm:py-3 rounded-full border border-white/30 bg-black/20 text-white text-base sm:text-lg font-Chivo backdrop-blur transition hover:bg-white/20 shadow"
       style={{ borderRadius: 20 }}
       onClick={() => {
         document.getElementById("contact-info")?.scrollIntoView({ behavior: "smooth" });

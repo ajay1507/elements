@@ -225,7 +225,7 @@ const [counts, setCounts] = useState(stats.map(() => 0));
                           transform: "rotate(0deg)",
                         }}
                       /> */}
-                      <hr className="w-4/5 border-t-[2.10px] border-white/20 my-4" />
+                      <hr className="w-[200px] border-t-[2.10px] border-white/20 my-4" />
                     </div>
                     {/* DESCRIPTION */}
                     <div className="flex-1 flex items-end pb-8 px-2 w-full">

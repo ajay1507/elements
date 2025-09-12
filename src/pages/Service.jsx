@@ -87,7 +87,7 @@ export default function Service() {
 >
   <div className="absolute inset-0 bg-black/60" />
  <div className="relative z-10 flex flex-col items-center space-y-10 w-full text-center px-4 py-9 sm:px-6 md:px-8 max-w-full sm:max-w-4xl md:max-w-[900px] lg:max-w-[1100px] xl:max-w-[1342px] mx-auto">
-  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-8 sm:mb-10">
+  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-chivo leading-tight mb-8 sm:mb-10">
     Empowering <br /> Sustainable Growth
   </h1>
 
@@ -96,7 +96,7 @@ export default function Service() {
 style={{ boxSizing: "border-box" }}
 
   >
-    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-0">
+    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-chivo text-white mb-0">
       {current.title}
     </h2>
     <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 leading-relaxed">
@@ -112,7 +112,6 @@ style={{ boxSizing: "border-box" }}
     />
   </div>
 </div>
-
 </section>
 
 
@@ -120,14 +119,14 @@ style={{ boxSizing: "border-box" }}
       <section className="bg-white min-h-screen flex items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px]">
         <div className="flex flex-col md:flex-row items-center gap-12 w-full max-w-[1440px] mx-auto">
           <div className="md:w-1/2">
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-6 text-gray-900">
+            <h1 className="text-3xl md:text-4xl font-chivo mb-6 text-gray-900">
               Comprehensive Financial Solutions for Sustainable Growth
             </h1>
             <p className="text-gray-700 leading-relaxed text-base md:text-lg max-w-3xl">
               At Elements Financial Solutions, we deliver a dynamic suite of advisory services tailored to empower clients across sectors including Energy, Materials, Industrials, Utilities, Health Care, Financials, Consumer Discretionary, Consumer Staples, Information Technology, 
               Communication Services, and Real Estate. With commitment to innovation, collaboration, and sustainability, our solutions transform challenges into opportunities, driving resilience and long-term success.
             </p>
-            <button className="mt-8 text-gray-600 hover:text-gray-900 text-lg font-light flex items-center gap-2">
+            <button className="mt-8 text-gray-600 hover:text-gray-900 text-lg font-chivo flex items-center gap-2">
               Explore Offering Details <span style={{ fontSize: 24 }}>↓</span>
             </button>
           </div>
@@ -140,7 +139,7 @@ style={{ boxSizing: "border-box" }}
       {/* Services Tabbed Section */}
       <section className="px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px] py-20 w-full">
         <div className="max-w-[1440px] mx-auto">
-          <h1 className="text-5xl font-extrabold text-black mb-6">Services We Offer</h1>
+          <h1 className="text-5xl font-chivo text-black mb-6">Services We Offer</h1>
           <div className="flex flex-wrap sm:flex-nowrap border-b border-gray-300 mb-12 mx-auto w-full overflow-x-auto">
             {services.map((service, index) => (
               <button
@@ -149,7 +148,7 @@ style={{ boxSizing: "border-box" }}
                   setActiveTab(index);
                   setShowOfferings(false);
                 }}
-                className={`flex-1 min-w-[160px] py-2 text-center text-base sm:text-lg font-semibold uppercase transition-colors border-b-2 whitespace-nowrap ${
+                className={`flex-1 min-w-[160px] py-2 text-center text-base sm:text-lg font-chivo uppercase transition-colors border-b-2 whitespace-nowrap ${
                   activeTab === index
                     ? "border-[#00B3FF] text-[#00B3FF]"
                     : "border-transparent text-gray-400 hover:text-[#00B3FF] active:bg-gray-200"
@@ -183,7 +182,7 @@ style={{ boxSizing: "border-box" }}
              
                 className="mb-10 text-gray-800"
                 style={{
-                  fontFamily: "Albert Sans, sans-serif",
+                  fontFamily: "Albert Sans,",
                   fontWeight: 400,
                   fontSize: "18px",
                   lineHeight: "1.7",
@@ -240,43 +239,43 @@ We engage closely with promoters, CFOs, and institutional stakeholders to struct
            <div className="mt-12 flex flex-col items-stretch w-full min-h-screen">
   <ul className="w-full bg-white p-8 space-y-8 max-w-full mx-auto">
     <li>
-      <strong className="text-lg font-bold mr-2">Project Financing:</strong>
+      <strong className="text-lg font-Albert Sans mr-2">Project Financing:</strong>
       <span className="text-gray-700">
         End-to-end advisory for infrastructure, industrial, and capital-intensive projects — from financial closure to execution — with a focus on viability, risk mitigation, and long-term funding.
       </span>
     </li>
     <li>
-      <strong className="text-lg font-bold mr-2">Working Capital Financing:</strong>
+      <strong className="text-lg font-Albert Sans mr-2">Working Capital Financing:</strong>
       <span className="text-gray-700">
         Solutions to optimize day-to-day liquidity through structured working capital limits, cash flow-backed instruments, and bank financing to ensure smooth business continuity.
       </span>
     </li>
     <li>
-      <strong className="text-lg font-bold mr-2">Structured Debt Financing:</strong>
+      <strong className="text-lg font-Albert Sans mr-2">Structured Debt Financing:</strong>
       <span className="text-gray-700">
         Custom-crafted instruments including NCDs, CCDs, promoter funding, and other hybrid models to meet complex capital requirements across growth and consolidation stages.
       </span>
     </li>
     <li>
-      <strong className="text-lg font-bold mr-2">Distressed Asset Financing:</strong>
+      <strong className="text-lg font-Albert Sans mr-2">Distressed Asset Financing:</strong>
       <span className="text-gray-700">
         Advisory for turnaround capital, one-time settlement (OTS) deals, and investor sourcing for stressed businesses, enabling resolution and recovery strategies under regulatory frameworks.
       </span>
     </li>
     <li>
-      <strong className="text-lg font-bold mr-2">Term Loans / LAS / LAP:</strong>
+      <strong className="text-lg font-Albert Sans mr-2">Term Loans / LAS / LAP:</strong>
       <span className="text-gray-700">
         Support in securing long-term loans, Loan Against Shares (LAS), and Loan Against Property (LAP), aligned with collateral and cash flow profiles to reduce financing costs.
       </span>
     </li>
     <li>
-      <strong className="text-lg font-bold mr-2">Bridge / Mezzanine Finance:</strong>
+      <strong className="text-lg font-Albert Sans mr-2">Bridge / Mezzanine Finance:</strong>
       <span className="text-gray-700">
         Short- to medium-term funding solutions to bridge capital gaps during acquisitions, expansions, or IPOs — structured for speed, flexibility, and minimal equity dilution.
       </span>
     </li>
     <li>
-      <strong className="text-lg font-bold mr-2">Performing Credit Financing:</strong>
+      <strong className="text-lg font-Albert Sans mr-2">Performing Credit Financing:</strong>
       <span className="text-gray-700">
         Debt solutions for businesses with strong balance sheets and predictable cash flows, targeting competitive terms for refinancing, capex, and acquisition-led growth.
       </span>
@@ -297,7 +296,7 @@ We engage closely with promoters, CFOs, and institutional stakeholders to struct
                   gap: 10,
                   opacity: 1,
                 }}
-                className="mt-8 border border-gray-400 text-lg font-normal text-gray-800 bg-white hover:text-black hover:border-black transition mx-auto"
+                className="mt-8 border border-gray-400 text-lg font-Albert Sans text-gray-800 bg-white hover:text-black hover:border-black transition mx-auto"
               >
                 Close
               </button>

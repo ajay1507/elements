@@ -72,7 +72,7 @@ export default function Transactions() {
       >
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 flex flex-col items-center space-y-10 w-full text-center">
-          <h1 className="text-white text-5xl md:text-7xl font-extrabold leading-tight max-w-5xl mx-auto mb-8">
+          <h1 className="text-white text-5xl md:text-7xl font-Chivo leading-tight max-w-5xl mx-auto mb-8">
             Delivering Transformative <br /> Financial Success
           </h1>
 
@@ -83,10 +83,10 @@ export default function Transactions() {
               boxSizing: "border-box",
             }}
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-2 text-white">
+            <h2 className="text-3xl md:text-4xl font-Chivo mb-2 text-white">
               Elements Financial Solutions
             </h2>
-            <p className="mb-4 text-lg leading-relaxed text-white/90" style={{ marginTop: 0 }}>
+            <p className="mb-4 text-lg leading-relaxed font-Albert Sans text-white/90" style={{ marginTop: 0 }}>
               has built a distinguished track record of executing impactful transactions that drive sustainable growth and value creation for clients across Energy, Materials, Industrials, Utilities, Health Care, Financials, Consumer Discretionary, Consumer Staples, Information Technology, Communication Services, and Real Estate. Our expertise in debt resolution, debt syndication, rating advisory, M&A advisory, and equity advisory enables us to deliver tailored, high-impact solutions that address complex financial challenges. By leveraging deep industry knowledge, strategic partnerships with leading institutions, and a commitment to innovation, EFS has successfully facilitated transformative deals, including restructurings, capital raises, acquisitions, and rating enhancements. Our collaborative approach ensures that every transaction aligns with our clients’ long-term goals, fostering resilience and prosperity in both local and global markets.
             </p>
           </div>
@@ -101,12 +101,11 @@ export default function Transactions() {
       <section className="bg-[#01487A] text-white px-4 sm:px-6 py-20 md:py-32">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="flex-1 flex flex-col items-start">
-            <h2 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-Chivo mb-6 leading-tight">
               Powering Growth <br /> Across Industries
             </h2>
             <p className="text-lg text-gray-200 mb-12">
-              Reflected in recently closed transactions with energy, clean technologies, infrastructure, and healthcare clients, showcasing commitment across sectors.
-            </p>
+Our expertise in structured finance is reflected in recently closed transactions with a Sustainable Green Energy Company, an Ethanol & Sewage Treatment firm, and equity investments in Healthcare, Oleochemicals, and Hospitality. These deals demonstrate our commitment to fostering growth in both traditional and emerging sectors.            </p>
             <button className="text-white border border-white rounded-full px-4 py-3 hover:bg-white hover:text-[#01487A] transition">
               Explore Transactions <span className="ml-2">↓</span>
             </button>
@@ -121,31 +120,34 @@ export default function Transactions() {
 
       <section className="w-full bg-white py-6 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-[120px] 2xl:px-[240px]">
         <div className="max-w-[1500px] mx-auto py-10 sm:py-20">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-3 text-left">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-Chivo text-gray-900 mb-3 text-left">
             Our Transactions
           </h2>
+        
+          <p 
+            className="mb-10 text-gray-800"
+          style={{
+            fontFamily: 'Albert Sans, sans-serif',
+            fontWeight: 400,
+            fontSize: '18px',
+            lineHeight: '1.7',
+           
+            opacity: 1,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            textAlign: 'left',
+            letterSpacing: 0,
+          }}
+            >
 
-          <p
-            className="mb-10 text-gray-800 max-w-4xl"
-            style={{
-              fontFamily: 'Albert Sans, sans-serif',
-              fontWeight: 400,
-              fontSize: '18px',
-              lineHeight: '1.7',
-              opacity: 1,
-              letterSpacing: 0,
-              textAlign: 'left'
-            }}
-          >
-            Elements Financial Solutions Private Limited (EFS) has delivered high-impact transactions for leaders in Real Estate, E–Mobility, IMFL, Consumer Electricals, Green Energy, and more. Equity deals span Healthcare, Hospitality, Sea Foods, Oleochemicals, EVs, CBG. Ongoing projects span Renewable Energy, Textiles, Pharmaceuticals, Road EPC, Power, Real Estate, Hygiene Products, Steel Pipes, and IT. With tailored expertise, EFS drives sustainable success globally.
-          </p>
+Elements Financial Solutions Private Limited (EFS) has delivered high-impact transactions for leaders in Real Estate, E-Mobility, IMFL, Consumer Electricals, Green Energy, and Ethanol. Our equity deals include Healthcare, Hospitality, Sea Foods, Oleochemicals, EVs, and CBG. Ongoing projects span Renewable Energy, Textiles, Pharmaceuticals, Road EPC, Power, Real Estate, Hygiene Products, Steel Pipes, Sea Foods, and IT. With tailored expertise, EFS drives sustainable success globally.          </p>
 
           <div className="flex flex-wrap sm:flex-nowrap border-b border-gray-300 mb-12 overflow-x-auto">
             {["concluded", "equity", "ongoing"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`flex-1 min-w-[160px] py-2 text-center text-base sm:text-lg font-semibold uppercase transition-colors border-b-2
+                className={`flex-1 min-w-[160px] py-2 text-center text-base sm:text-lg font-Chivo uppercase transition-colors border-b-2
                   ${activeTab === tab ? "border-[#00B3FF] text-[#00B3FF]" : "border-transparent text-gray-400"}
                 `}
                 style={{ flexBasis: "0 0 auto" }}
@@ -166,9 +168,9 @@ export default function Transactions() {
               {concludedTransactions.map(({ title, sector, amount, deal, icon }, idx) => (
                 <div key={idx} className="flex flex-col items-center text-center w-full max-w-xs mx-auto">
                   <img src={icon} alt={`${sector} icon`} className="mb-5 w-20 h-20 object-contain" draggable="false" />
-                  <div className="text-[#11BC34] font-bold uppercase mb-5 text-lg tracking-tight">{sector}</div>
+                  <div className="text-[#11BC34] font-Chivo uppercase mb-5 text-lg tracking-tight">{sector}</div>
                   <div className="bg-[#F6F7FA] rounded-3xl px-6 py-7 w-full text-left shadow-none">
-                    <h3 className="font-semibold text-lg mb-2 leading-tight">{title}</h3>
+                    <h3 className="font-Albert Sans text-lg mb-2 leading-tight">{title}</h3>
                     <ul className="ml-4 list-disc text-gray-800 text-base space-y-1">
                       <li>{amount}</li>
                       <li>Deal: {deal}</li>
@@ -194,9 +196,9 @@ export default function Transactions() {
                       className="mb-5 w-20 h-20 object-contain"
                       draggable="false"
                     />
-                    <div className="text-[#11BC34] font-bold uppercase mb-5 text-lg tracking-tight">{sector}</div>
+                    <div className="text-[#11BC34] font-chivo uppercase mb-5 text-lg tracking-tight">{sector}</div>
                     <div className="bg-[#F6F7FA] rounded-3xl px-6 py-7 w-full text-left shadow-none">
-                      <h3 className="font-semibold text-lg mb-2 leading-tight">{title}</h3>
+                      <h3 className="font-Albert Sans text-lg mb-2 leading-tight">{title}</h3>
                       <ul className="ml-4 list-disc text-gray-800 text-base space-y-1">
                         <li>{amount}</li>
                         <li>Deal: {deal}</li>
@@ -218,9 +220,9 @@ export default function Transactions() {
                     className="mb-5 w-20 h-20 object-contain"
                     draggable="false"
                   />
-                  <div className="text-[#11BC34] font-bold uppercase mb-5 text-lg tracking-tight">{sector}</div>
+                  <div className="text-[#11BC34] font-chivo uppercase mb-5 text-lg tracking-tight">{sector}</div>
                   <div className="bg-[#F6F7FA] rounded-3xl px-6 py-7 w-full text-left shadow-none">
-                    <h3 className="font-semibold text-lg mb-2 leading-tight">{title}</h3>
+                    <h3 className="font-Albert Sans text-lg mb-2 leading-tight">{title}</h3>
                     <ul className="ml-4 list-disc text-gray-800 text-base space-y-1">
                       <li>{amount}</li>
                     </ul>

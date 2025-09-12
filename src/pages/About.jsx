@@ -56,7 +56,10 @@ His strong professional network includes active relationships with major Indian 
     linkedin: "https://linkedin.com/in/dinesh-kunder",
     bio: [
       "Dinesh Kunder brings to the table an impressive tenure of 29 years in the realms of Corporate Finance, Structured Finance, and Corporate Advisory, with a strong record of delivering mandates across various industries and the investment banking sector.",
+
       "His expertise is primarily anchored in areas like debt syndication, financial restructuring, and the re-capitalization of distressed assets, where he has successfully executed numerous transactions. His extensive experience is further bolstered by solid professional relationships within the banking and finance industry.",
+
+
       "Holding a degree in commerce and credentials as a chartered accountant, Dinesh's academic and professional qualifications lay a robust foundation for his distinguished career in finance and advisory services.",
     ],
   },
@@ -68,7 +71,10 @@ His strong professional network includes active relationships with major Indian 
     linkedin: "#",
     bio: [
       "With over 16 years of professional experience, Siddesh Rai is a seasoned expert in sales and marketing, specializing in the ratings sector for the past 12 years. An MBA graduate from Welingkars, Siddesh has played pivotal roles in business development, driving growth and strategic initiatives.",
+
+
       "His distinguished career includes significant tenures at Care Ratings, Motilal Oswal, and MCX Stock Exchange, where he honed his skills and contributed to their expansive market presence.",
+
       "Siddesh’s deep industry knowledge and strategic insight make him a key asset in navigating complex market dynamics and enhancing business value."
     ]
   }
@@ -114,31 +120,35 @@ function TeamCarousel() {
   const member = teamMembers[selectedIndex];
 
   return (
- <section className="py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-48 relative -ml-[5%]">
-  <div className="flex flex-col md:flex-row-reverse items-center md:items-start gap-10 lg:gap-16">
+<section className="py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-48">
+  <div className="flex flex-col lg:flex-row-reverse items-center lg:items-start gap-10 lg:gap-16">
+    
     {/* Right side – details */}
-    <div className="w-full md:w-3/5">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-Chivo mb-8 md:mb-12 text-left">
-        Meet the <span className="font-bold text-black">Team</span>
+    <div className="w-full lg:w-3/5">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-Chivo mb-6 sm:mb-8 md:mb-12 text-left">
+        Meet the <span className="text-black">Team</span>
       </h2>
 
       {/* Member name + role */}
-  <div className="flex flex-col">
-    <h3 className="text-blue-600 text-xl sm:text-2xl md:text-3xl font-Chivo mb-1 truncate">
-      {member.name.toUpperCase()}
-    </h3>
-
-    <p className="text-base sm:text-lg font-Chivo text-black">{member.role}</p>
-
-    {/* Credential (optional, reserve space even if missing) */}
-    <p className={`text-gray-500 font-medium text-sm sm:text-base ${member.credential ? "" : "invisible"}`}>
-      {member.credential || "Placeholder"} 
-    </p>
-  </div>
+      <div className="flex flex-col">
+        <h3 className="text-blue-600 text-lg sm:text-2xl md:text-3xl font-Chivo mb-1 truncate">
+          {member.name.toUpperCase()}
+        </h3>
+        <p className="text-sm sm:text-base md:text-lg font-Chivo text-black">
+          {member.role}
+        </p>
+        <p
+          className={`text-gray-500 font-medium text-xs sm:text-sm md:text-base ${
+            member.credential ? "" : "invisible"
+          }`}
+        >
+          {member.credential || "Placeholder"}
+        </p>
+      </div>
 
       {/* Bio */}
       <div
-        className="mt-4 text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base"
+        className="mt-4 text-gray-700 whitespace-pre-line leading-relaxed text-sm sm:text-base md:text-lg"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         tabIndex={0}
@@ -165,45 +175,46 @@ function TeamCarousel() {
       )}
 
       {/* Progress Bar */}
-    <div className="w-full mt-6 h-[2px] bg-gray-200 relative overflow-hidden rounded">
-  <div
-    className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-100 ease-linear"
-    style={{ width: `${progress}%` }}
-  />
-</div>
+      <div className="w-full mt-6 h-[2px] bg-gray-200 relative overflow-hidden rounded">
+        <div
+          className="absolute top-0 left-0 h-full bg-green-500 transition-all duration-100 ease-linear"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
 
-     
-  {/* Thumbnails */}
-<div className="flex w-full mt-8 md:mt-10">
-  <div className="flex gap-4 sm:gap-8 lg:gap-12 xl:gap-16 flex-wrap justify-start">
-    {teamMembers.map((m, idx) => (
-      <button
-        key={m.name}
-        onClick={() => handleMemberChange(idx)}
-        className={`flex flex-col items-center text-center transition ${
-          selectedIndex === idx ? "opacity-100" : "opacity-60 hover:opacity-100"
-        }`}
-        style={{ minWidth: "5rem" }} // fix button width
-      >
-        <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-blue-400 overflow-hidden shadow-md flex-shrink-0">
-          <img
-            src={m.img}
-            alt={m.name}
-            className="w-full h-full object-cover"
-          />
+      {/* Thumbnails */}
+      <div className="flex w-full mt-8 md:mt-10">
+        <div className="flex flex-wrap gap-4 sm:gap-6 lg:gap-8 xl:gap-12 justify-start">
+          {teamMembers.map((m, idx) => (
+            <button
+              key={m.name}
+              onClick={() => handleMemberChange(idx)}
+              className={`flex flex-col items-center text-center transition ${
+                selectedIndex === idx
+                  ? "opacity-100"
+                  : "opacity-60 hover:opacity-100"
+              }`}
+              style={{ minWidth: "4.5rem" }}
+            >
+              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-blue-400 overflow-hidden shadow-md flex-shrink-0">
+                <img
+                  src={m.img}
+                  alt={m.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="mt-2 text-xs sm:text-sm md:text-base font-Chivo truncate w-full text-center">
+                {m.name}
+              </p>
+            </button>
+          ))}
         </div>
-        <p className="mt-2 text-xs sm:text-sm font-medium truncate w-full text-center">
-          {m.name}
-        </p>
-      </button>
-    ))}
-  </div>
-</div>
+      </div>
     </div>
 
     {/* Left side – capsule image */}
     <div
-      className="overflow-hidden shadow-lg flex-shrink-0 mt-6 md:mt-12 flex flex-col items-center justify-start
+      className="overflow-hidden shadow-lg flex-shrink-0 mt-6 lg:mt-12 flex flex-col items-center justify-start
       w-[160px] h-[260px] sm:w-[200px] sm:h-[320px] md:w-[260px] md:h-[400px] lg:w-[300px] lg:h-[480px]"
       style={{
         borderRadius: "300px",
@@ -224,12 +235,12 @@ function TeamCarousel() {
           marginTop: "18px",
           height: "calc(100% - 18px)",
           width: "100%",
-          objectFit: "cover",
         }}
       />
     </div>
   </div>
 </section>
+
 
   );
 }
@@ -245,7 +256,7 @@ export default function About() {
       >
         <div className="absolute inset-0 bg-black/60 " />
         <div className="relative z-10 flex flex-col items-center space-y-10 w-full text-center">
-          <h1 className="text-white text-5xl md:text-7xl font-extrabold leading-tight max-w-5xl mx-auto mb-8">
+          <h1 className="text-white text-5xl md:text-7xl font-Chivo leading-tight max-w-5xl mx-auto mb-8">
             Empowering <br /> Growth with Purpose
           </h1>
 
@@ -257,7 +268,7 @@ style={{
 }}
 
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-2 text-white">
+            <h2 className="text-3xl md:text-4xl font-Chivo mb-2 text-white">
               Elements Financial Solutions
             </h2>
             <p className="mb-4 text-lg leading-relaxed text-white/90" style={{ marginTop: 0 }}>
@@ -277,7 +288,7 @@ style={{
       <section className="bg-[#00467B] py-20 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[120px] 2xl:px-[240px]" style={{ marginTop: 0, paddingTop: 150 }}>
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center text-white gap-10">
           <div className="md:w-1/2">
-            <h2 className="text-4xl font-extrabold mb-6 text-center md:text-left">
+            <h2 className="text-4xl font-Chivo mb-6 text-center md:text-left">
               Our Expertise
             </h2>
             <p className="text-base leading-relaxed max-w-xl mx-auto md:mx-0 text-center md:text-left">
@@ -331,7 +342,7 @@ style={{
                   />
                 </div>
                 <div className="flex flex-col items-start pl-4 sm:pl-8">
-                  <h3 className="font-extrabold text-lg md:text-xl text-black text-left mb-1">
+                  <h3 className="font-Chivo text-lg md:text-xl text-black text-left mb-1">
                     {name}
                   </h3>
                   <div className="text-sm md:text-md text-gray-500 text-left leading-tight mb-1" style={{ whiteSpace: "pre-line" }}>
