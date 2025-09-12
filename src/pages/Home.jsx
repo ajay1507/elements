@@ -104,157 +104,117 @@ const [counts, setCounts] = useState(stats.map(() => 0));
     <div className="text-gray-900">
       <div className="flex flex-col space-y-40">
         {/* Investment Bank Section */}
-        <section
-          className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black py-5 px-4 sm:px-8 md:px-16 lg:px-32"
-          Chivo="Investment Bank Hero Section"
-        >
-          <div className="absolute inset-0 w-full h-full">
-            {images.map((img, index) => {
-              let opacity = 0;
-              if (index === currentIndex && !isFading) opacity = 1;
-              else if (index === currentIndex && isFading) opacity = 0;
-              else if (index === (currentIndex + 1) % images.length && isFading)
-                opacity = 1;
-              return (
-                <img
-                  key={index}
-                  src={img}
-                  alt={`Slide ${index + 1}`}
-                  style={{
-                    opacity,
-                    transition: "opacity 4s ease-in-out",
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    willChange: "opacity",
-                    pointerEvents: opacity === 0 ? "none" : "auto",
-                  }}
-                />
-              );
-            })}
-            <div className="absolute inset-0 bg-black/40" />
-          </div>
-          <div className="relative z-10 w-full text-white text-center px-4 sm:px-8 md:px-16">
-         <motion.div
-  initial={{ y: -100, opacity: 0 }}   // Start above & hidden
-  animate={{ y: 0, opacity: 1 }}     // Animate to normal position
-  transition={{ duration: 1, ease: "easeOut" }}  // Smooth effect
-  className="relative z-10 w-full text-white text-center px-4 sm:px-8 md:px-16"
+   <section
+  className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black py-5 px-4 sm:px-8 md:px-16 lg:px-32"
+  Chivo="Investment Bank Hero Section"
 >
-  <h3 className="text-lg sm:text-xl md:text-2xl font-chivo">
-    India’s Execution – Focused
-  </h3>
-  <h1 className="text-white text-5xl md:text-7xl font-Chivo leading-tight max-w-7xl mx-auto mb-8">
-    Investment Bank
-  </h1>
-  <p className="mt-4 text-base sm:text-lg md:text-xl max-w-xl mx-auto text-middle font-chivo">
-    From deal structuring to closure, we bring precision and speed to your
-    capital and strategic initiatives.
-  </p>
-</motion.div>
-            {/* Stats Cards */}
-    <div className="w-full flex flex-wrap lg:flex-nowrap justify-center gap-[10px] py-6">
+  {/* Background Slideshow */}
+  <div className="absolute inset-0 w-full h-full">
+    {images.map((img, index) => {
+      let opacity = 0;
+      if (index === currentIndex && !isFading) opacity = 1;
+      else if (index === currentIndex && isFading) opacity = 0;
+      else if (index === (currentIndex + 1) % images.length && isFading)
+        opacity = 1;
+
+      return (
+        <img
+          key={index}
+          src={img}
+          alt={`Slide ${index + 1}`}
+          style={{
+            opacity,
+            transition: "opacity 4s ease-in-out",
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            willChange: "opacity",
+            pointerEvents: opacity === 0 ? "none" : "auto",
+          }}
+        />
+      );
+    })}
+    <div className="absolute inset-0 bg-black/40" />
+  </div>
+
+  {/* Content */}
+  <div className="relative z-10 w-full text-white text-center px-4 sm:px-8 md:px-16">
+    {/* Heading + Subheading */}
+    <motion.div
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="relative z-10 w-full text-white text-center"
+    >
+      <h3 className="text-lg sm:text-xl md:text-2xl font-chivo">
+        India’s Execution – Focused
+      </h3>
+      <h1 className="text-white text-4xl sm:text-5xl md:text-7xl font-Chivo leading-tight max-w-7xl mx-auto mb-8">
+        Investment Bank
+      </h1>
+      <p className="mt-4 text-base sm:text-lg md:text-xl max-w-xl mx-auto font-chivo">
+        From deal structuring to closure, we bring precision and speed to your
+        capital and strategic initiatives.
+      </p>
+    </motion.div>
+
+    {/* Stats Cards */}
+    <div className="w-full flex flex-wrap justify-center gap-4 py-6">
       {stats.map(({ label, suffix }, index) => (
-        <div key={label} className="flex flex-col opacity-100">
+        <div
+          key={label}
+          className="flex flex-col flex-1 min-w-[150px] max-w-[300px]"
+        >
           {/* Top Part */}
-          <div
-            className="flex flex-row items-center justify-center"
-            style={{
-              width: 335,
-              height: 91,
-              borderRadius: 5,
-              border: "1px solid rgba(255,255,255,0.30)",
-              borderBottom: 0,
-              padding: 10,
-              background:
-                "linear-gradient(90deg,rgba(255,255,255,0.15) 0%,rgba(255,255,255,0.05) 100%)"
-            }}
-          >
-            <span className="font-bold text-white text-4xl">
+          <div className="flex items-center justify-center h-[90px] rounded-t-md border border-white/30 border-b-0 bg-white/10">
+            <span className="font-bold text-white text-2xl sm:text-3xl md:text-4xl">
               {counts[index].toLocaleString()} {suffix}
             </span>
           </div>
+
           {/* Bottom Part */}
-          <div
-            className="flex items-center justify-center"
-            style={{
-              width: 335,
-              height: 60,
-              borderLeft: "1px solid rgba(255,255,255,0.30)",
-              borderRight: "1px solid rgba(255,255,255,0.30)",
-              borderBottom: "1px solid rgba(255,255,255,0.30)",
-              borderBottomRightRadius: 15,
-              borderBottomLeftRadius: 15,
-              background:
-                "linear-gradient(90deg,rgba(255,255,255,0.32) 0%,rgba(255,255,255,0.14) 100%)"
-            }}
-          >
-            <span className="text-lg text-white w-full text-center">{label}</span>
+          <div className="flex items-center justify-center h-[60px] rounded-b-xl border border-white/30 bg-white/20">
+            <span className="text-sm sm:text-base md:text-lg text-white text-center">
+              {label}
+            </span>
           </div>
         </div>
       ))}
     </div>
-            {/* Icons */}
-            {/* <div className="mt-16 flex justify-center overflow-x-automax-w-[1440px]"> */}
-             <div className="w-full flex flex-wrap lg:flex-nowrap  justify-center gap-[10px] py-6">
-              <div
-  className="rounded-xl border border-white/10 shadow-xl flex items-stretch w-full min-w-[400px] max-w-[1400px]"
-              style={{                          
-                  height: 232,
-                  background: "linear-gradient(90deg,rgba(255, 255, 255, 0.15) 0%,rgba(255,255,255,0.05) 100%)",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  boxShadow: "0 6px 48px 0 rgba(226, 225, 225, 0.15)",
-                }}
-              >
-                {[firsticon, secondicon, thirdicon , fourthicon, fifthicon].map((Icon, idx) => (
-                  <div
-                    key={idx}
-                    className="flex flex-col justify-between items-center flex-1 max-w-[1440px] mx-auto"
-                  >
-                    {/* ICON + HR */}
-                    <div className="flex flex-col items-center pt-10 px-4">
-                      <img src = {Icon} alt={`Icon ${idx + 1}`} className="w-12 h-12 mb-4" />
-                      {/* <Icon
-                        className="text-white mb-4 drop-shadow-lg w-10 h-10 "
-                        style={{
-                         
-                          opacity: 1,
-                          transform: "rotate(0deg)",
-                        }}
-                      /> */}
-                      <hr className="w-[200px] border-t-[2.10px] border-white/20 my-4" />
-                    </div>
-                    {/* DESCRIPTION */}
-                    <div className="flex-1 flex items-end pb-8 px-2 w-full">
-                      <p className="text-xl md:text-1xl font-semibold text-white text-center leading-tight w-full">
-                        {[
-                          <>
-                            30+ years of<br />experience
-                          </>,
-                          <>
-                            Presence across<br />financial hubs
-                          </>,
-                          <>
-                            Sector-agnostic<br />expertise
-                          </>,
-                          <>
-                            Strong mid–large<br />deal track records
-                          </>,
-                          <>
-                            Trusted by growth to <br />listed Companies
-                          </>,
-                        ][idx]}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+
+    {/* Icons Row */}
+    <div className="w-full flex flex-wrap justify-center gap-4 py-6">
+      <div className="rounded-xl border border-white/10 shadow-xl flex flex-wrap justify-between w-full max-w-[1400px] p-6 bg-white/10 backdrop-blur-md">
+        {[firsticon, secondicon, thirdicon, fourthicon, fifthicon].map(
+          (Icon, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col items-center text-center flex-1 min-w-[140px] sm:min-w-[180px] md:min-w-[200px] p-4"
+            >
+              {/* ICON */}
+              <img src={Icon} alt={`Icon ${idx + 1}`} className="w-10 h-10 mb-3" />
+              <hr className="w-[60%] border-t border-white/30 my-3" />
+
+              {/* DESCRIPTION */}
+              <p className="text-sm sm:text-base md:text-lg font-semibold text-white">
+                {[
+                  <>30+ years of<br />experience</>,
+                  <>Presence across<br />financial hubs</>,
+                  <>Sector-agnostic<br />expertise</>,
+                  <>Strong mid–large<br />deal track records</>,
+                  <>Trusted by growth to<br />listed Companies</>,
+                ][idx]}
+              </p>
             </div>
-          </div>
-        </section>
+          )
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
 
         {/* Sector Grid */}
         <section className="bg-white py-6 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-48 2xl:px-60">
